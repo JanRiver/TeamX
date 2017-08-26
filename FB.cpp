@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -61,6 +63,76 @@ float getRandom();
 
 int main()
 {
- 
+    bool quit = false;
+
+    while (!quit)
+    {
+        cout << string(50, '\n');
+        cout << "Fruit Businessman\n";
+        cout << "Day: " << day << endl;
+        printInventory();
+        cout << "------------------------------------\n";
+        printPrice();
+
+        char cmd = ' ';
+        while (cmd != 'c' && cmd != 'C')
+        {
+            cmd = getChar("Enter B to buy, S to sell, C to continue: ");
+            if (cmd == 'B' || cmd == 'b')
+            {
+                buy();
+            }
+            else if (cmd == 'S' || cmd == 's')
+            {
+                sell();
+            }
+        }
+        update();
+    }
+
+
+    return 0;
+}
+
+void printPrice()
+{
+
+}
+
+void printInventory()
+{
+
+}
+
+bool buy()
+{
+
+}
+
+bool sell()
+{
+
+}
+
+char getChar(string question)
+{
+    char c;
+    cout << question;
+    cin >> c;
+    return c;
+}
+
+int getInt(string question)
+{
+
+}
+
+void update()
+{
+
+}
+
+float getRandom()
+{
 
 }
