@@ -23,9 +23,11 @@ struct Fruit
 };
 
 //print fruits' price
+//assigned to Nhan
 void printPrice();
 
 //print everything in inventory, fruits, cash,...
+//assigned to Nhan
 void printInventory();
 
 //buy an amount of fruit
@@ -35,6 +37,7 @@ bool buy(Fruit fruit, int amount);
 bool sell(Fruit fruit, int amount);
 
 //print a question and get a character as answer
+//assigned to Vang Vang
 char getChar(string question);
 
 //print a question and get an integer as answer
@@ -44,6 +47,7 @@ int getInt(string question);
 void update();
 
 //get a random number
+//assigned to Vang Vang
 float getRandom();
 
 
