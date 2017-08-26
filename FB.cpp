@@ -38,11 +38,11 @@ void printPrice();
 //assigned to Nhan
 void printInventory();
 
-//buy an amount of fruit
-bool buy(Fruit fruit, int amount);
+//buy fruit
+bool buy();
 
-//sell an amount of fruit
-bool sell(Fruit fruit, int amount);
+//sell fruit
+bool sell();
 
 //print a question and get a character as answer
 //assigned to Vang Vang
