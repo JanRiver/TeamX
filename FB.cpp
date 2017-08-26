@@ -22,6 +22,14 @@ struct Fruit
     float wastage;
 };
 
+Fruit fruit[5] {
+     { "Apple", 4.5, 1.0 },
+     { "Banana", 2.5, 1.8 },
+     { "Grape", 9.0, 2.0},
+     { "Orange", 4.0, 1.0},
+     { "Watermelon", 1.00, 1.2},
+};
+
 //print fruits' price
 //assigned to Nhan
 void printPrice();
@@ -53,12 +61,6 @@ float getRandom();
 
 int main()
 {
-    Fruit fruit[5] {
-        { "Apple", 4.5, 1.0 },
-        { "Banana", 2.5, 1.8 },
-        { "Grape", 9.0, 2.0},
-        { "Orange", 4.0, 1.0},
-        { "Watermelon", 1.00, 1.2},
-    };
+ 
 
 }
