@@ -106,12 +106,12 @@ void printInventory()
 
 bool buy()
 {
-
+    cout << "Bought: " << getRandom() << endl;
 }
 
 bool sell()
 {
-
+    cout << "Sold" << getRandom() << endl;
 }
 
 char getChar(string question)
@@ -119,6 +119,8 @@ char getChar(string question)
     char c;
     cout << question;
     cin >> c;
+    cin.clear();
+    cin.ignore(1000, '\n');
     return c;
 }
 
@@ -134,5 +136,6 @@ void update()
 
 float getRandom()
 {
-
+    int a = rand();
+    return float(( a % 201) - 100 ) / 100;
 }
