@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <iomanip>
 
 using namespace std;
 
@@ -24,17 +25,11 @@ struct Fruit
     float wastage;
 };
 
-Fruit fruit[5] {
-     { "Apple", 4.5, 1.0 },
-     { "Banana", 2.5, 1.8 },
-     { "Grape", 9.0, 2.0},
-     { "Orange", 4.0, 1.0},
-     { "Watermelon", 1.00, 1.2},
-};
+
 
 //print fruits' price
 //assigned to Nhan
-void printPrice();
+void printPrice(Fruit fruit[], int n);
 
 //print everything in inventory, fruits, cash,...
 //assigned to Nhan
@@ -63,6 +58,14 @@ float getRandom();
 
 int main()
 {
+    Fruit fruit[5] {
+     { "Apple", 4.5, 1.0 },
+     { "Banana", 2.5, 1.8 },
+     { "Grape", 9.0, 2.0},
+     { "Orange", 4.0, 1.0},
+     { "Watermelon", 1.00, 1.2},
+};
+
     bool quit = false;
 
     while (!quit)
@@ -72,7 +75,7 @@ int main()
         cout << "Day: " << day << endl;
         printInventory();
         cout << "------------------------------------\n";
-        printPrice();
+        printPrice(fruit, 5);
 
         char cmd = ' ';
         while (cmd != 'c' && cmd != 'C')
@@ -94,24 +97,36 @@ int main()
     return 0;
 }
 
-void printPrice()
+void printPrice (Fruit fruit[],int n)
 {
-
+		cout <<right<<setw(14)<<"Prices\n";
+		for(int i=0;i<n;i++)
+	{
+		cout <<left<<setw(15)<<fruit[i].name<<"$"<<left<<setw(30)<<fruit[i].price<<"\n";
+	}
 }
 
-void printInventory()
+void printInventory ()
 {
-
+	cout <<right<<setw(15)<<"Inventory\n";
+	cout <<left<<setw(15)<<"Apples: "<<left<<setw(10)<<inv_apple<<"\n"
+		 <<left<<setw(15)<<"Bananas: "<<left<<setw(10)<<inv_banana<<"\n"
+	 	 <<left<<setw(15)<<"Grapes: "<<left<<setw(10)<<inv_grape<<"\n"
+	 	 <<left<<setw(15)<<"Oranges: "<<left<<setw(10)<<inv_orange<<"\n"
+	 	 <<left<<setw(15)<<"Watermelons: "<<inv_watermelon<<"\n"
+		 <<left<<setw(15)<<"Cash: " <<cash<<"\n"
+		 <<left<<setw(15)<<"Days: "<<day<<"\n"
+		 <<left<<setw(15)<<"Networth: "<<networth<<"\n";
 }
 
 bool buy()
 {
-    cout << "Bought: " << getRandom() << endl;
+    cout << "Bought" << endl;
 }
 
 bool sell()
 {
-    cout << "Sold" << getRandom() << endl;
+    cout << "Sold" << endl;
 }
 
 char getChar(string question)
