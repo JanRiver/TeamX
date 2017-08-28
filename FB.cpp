@@ -36,10 +36,10 @@ void printPrice(Fruit fruit[], int n);
 void printInventory();
 
 //buy fruit
-bool buy();
+bool buy(Fruit[], int array_size);
 
 //sell fruit
-bool sell();
+bool sell(Fruit[], int array_size);
 
 //print a question and get a character as answer
 //assigned to Vang Vang
@@ -64,7 +64,7 @@ int main()
      { "Grape", 9.0, 2.0},
      { "Orange", 4.0, 1.0},
      { "Watermelon", 1.00, 1.2},
-};
+    };
 
     bool quit = false;
 
