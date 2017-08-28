@@ -36,10 +36,10 @@ void printPrice(Fruit fruit[], int n);
 void printInventory();
 
 //buy fruit
-bool buy(Fruit[], int array_size);
+bool buy(Fruit* fruit, int array_size);
 
 //sell fruit
-bool sell(Fruit[], int array_size);
+bool sell(Fruit* fruit, int array_size);
 
 //print a question and get a character as answer
 //assigned to Vang Vang
@@ -83,11 +83,11 @@ int main()
             cmd = getChar("Enter B to buy, S to sell, C to continue: ");
             if (cmd == 'B' || cmd == 'b')
             {
-                buy();
+                buy(fruit, 5);
             }
             else if (cmd == 'S' || cmd == 's')
             {
-                sell();
+                sell(fruit, 5);
             }
         }
         update();
@@ -119,12 +119,12 @@ void printInventory ()
 		 <<left<<setw(15)<<"Networth: "<<networth<<"\n";
 }
 
-bool buy()
+bool buy(Fruit* fruit, int array_size)
 {
     cout << "Bought" << endl;
 }
 
-bool sell()
+bool sell(Fruit* fruit, int array_size)
 {
     cout << "Sold" << endl;
 }
