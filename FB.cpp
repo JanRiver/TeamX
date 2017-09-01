@@ -109,7 +109,7 @@ int main()
         }
         update(fruit, 5);
 
-        if (day >= 3)
+        if (day >= 60)
         {
             printResult();
             quit = true;
