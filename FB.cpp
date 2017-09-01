@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #include <iomanip>
+#include <fstream>
 
 using namespace std;
 
@@ -28,7 +29,6 @@ struct Fruit
 void printPrice(Fruit fruit[], int n);
 
 //print everything in inventory, fruits, cash,...
-//assigned to Nhan
 void printInventory(Fruit *fruit, int array_size);
 
 //buy fruit
@@ -38,7 +38,6 @@ bool buy(Fruit* fruit, int array_size);
 bool sell(Fruit* fruit, int array_size);
 
 //print a question and get a character as answer
-//assigned to Vang Vang
 char getChar(string question);
 
 //print a question and get an integer as answer
@@ -50,26 +49,42 @@ float getFloat(string question);
 void update(Fruit *fruit, int array_size);
 
 //get a random number
-//assigned to Vang Vang
 float getRandom();
 
+//these functions are to print screen correctly
 string getMonthString(int month_as_number);
 void printScreen(Fruit *fruit, int array_size);
 
-void printResult();
+//high score
+float highScore[10];
+string highScoreName[10];
 
+//add a score to the highscore table
+void addScore(string name, float score);
+
+//print high score table
+void printHighscore();
+
+//save high score
+void saveHighscore();
+
+//load high score
+void loadHighscore();
+
+void printResult();
 
 int main()
 {
     Fruit fruit[5] = {
      { "Apple",      4.5, 1.0, 0.0, ".....", {7, 6, 5, 4, 3, 2, 3, 4, 5, 6, 7, 8} },
      { "Banana",     2.5, 1.8, 0.0, ".....", {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5} },
-     { "Grape",      9.0, 2.0, 0.0, ".....", {4, 3, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5} },
+     { "Grape",      9.0, 2.0, 0.0, ".....", {6, 8, 8, 7, 6, 5, 5, 4, 3, 2, 2, 6} },
      { "Orange",     4.0, 1.0, 0.0, ".....", {5, 5, 5, 2, 2, 2, 5, 5, 8, 8, 8, 5} },
      { "Watermelon", 1.0, 1.2, 0.0, ".....", {1, 2, 3, 7, 8, 9, 8, 7, 5, 5, 3, 2} },
     };
 
     bool quit = false;
+    loadHighscore();
 
     while (!quit)
     {
@@ -94,12 +109,25 @@ int main()
         }
         update(fruit, 5);
 
-        if (day >= 60)
+        if (day >= 3)
         {
             printResult();
             quit = true;
         }
     }
+
+    //save high score
+    if (networth > highScore[9])
+    {
+        string name;
+        cout << "You are in top 10 businessman\nEnter you name: ";
+        getline(cin, name);
+        addScore(name, networth);
+        printHighscore();
+    }
+
+
+    saveHighscore();
 
 
     return 0;
@@ -315,5 +343,73 @@ string getMonthString(int month_as_number)
     }
 }
 
+//add a score to the highscore table
+void addScore(string name, float score)
+{
+    if (score < highScore[9])
+        return;
+    if (score > highScore[9]) {
+        highScoreName[9] = name;
+        highScore[9] = score;
+    }
+    for (int i = 8; i >= 0; i--)
+    {
+        if (score > highScore[i])
+        {
+            highScore[i + 1] = highScore[i];
+            highScore[i] = score;
+
+            highScoreName[i + 1] = highScoreName[i];
+            highScoreName[i] = name;
+        }
+    }
+}
+
+//print high score table
+void printHighscore()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        cout << left << setw(2) <<i + 1 << ". " << left << setw(20)
+        << highScoreName[i] << right << setw(6)<< highScore[i] << endl;
+    }
+}
+
+//save high score
+void saveHighscore()
+{
+    fstream outputFile("Savefile.teamx", ios::out | ios::binary);
+    if (!outputFile)
+    {
+        cout << "Can not open savefile.teamx" << endl;
+        return;
+    }
+
+    for (int i = 0; i < 10; i++) {
+        outputFile.seekp(i * 100);
+        outputFile.write((char*) (&highScoreName[i]), sizeof(highScoreName[i]));
+        outputFile.write((char*) (&highScore[i]), sizeof(highScore[i]));
+    }
+    outputFile.close();
+}
+
+//load high score
+void loadHighscore()
+{
+
+    fstream inputFile("Savefile.teamx", ios::in | ios::binary);
+    if (!inputFile)
+    {
+        cout << "Can not open savefile.teamx" << endl;
+        return;
+    }
+
+    for (int i = 0; i < 10; i++) {
+        inputFile.seekp(i * 100);
+        inputFile.read((char*) (&highScoreName[i]), sizeof(highScoreName[i]));
+        inputFile.read((char*) (&highScore[i]), sizeof(highScore[i]));
+    }
+    inputFile.close();
+}
 
 
